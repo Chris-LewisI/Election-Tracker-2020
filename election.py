@@ -8,7 +8,7 @@ response = requests.get(url)
 soup = BeautifulSoup(response.text, 'html.parser')
 
 score_tracker = []
-swing_electoral = {
+state_electoral = {
     "PA": 20, 
     "TX": 38, 
     "WI": 10, 
@@ -60,7 +60,7 @@ swing_electoral = {
     "WV": 5, 
     "WI": 10, 
     "WY": 3
-    }
+}
 
 for line in soup.findAll('div', attrs={'class': 'e-count-label'}):
     score_tracker.append(line.text)
@@ -71,29 +71,29 @@ print(f"Remaining:\t{score_tracker[2]}")
 print('\n')
 
 while True:
-    operation = input('add or sub State: ')
-    if(operation == 'add'):
+    operation = input('ADD or SUB State: ')
+    if(operation == 'ADD'):
         candidate = input('Candidate: ')
         if candidate == 'Trump':
             state = input('Swing State Abbreviation: ')
-            score_tracker[1] = int(score_tracker[1]) + swing_electoral[state]
+            score_tracker[1] = int(score_tracker[1]) + state_electoral[state]
             print(f"[ESTIMATE] Trump:\t\t{score_tracker[1]}")
         elif candidate == 'Biden':
             state = input('Swing State Abbreviation: ')
-            score_tracker[1] = int(score_tracker[0]) + swing_electoral[state]
+            score_tracker[1] = int(score_tracker[0]) + state_electoral[state]
             print(f"[ESTIMATE] Biden:\t\t{score_tracker[0]}")
         else:
             break
 
-    elif(operation == 'sub'):
+    elif(operation == 'SUB'):
         candidate = input('Candidate: ')
         if candidate == 'Trump':
             state = input('Swing State Abbreviation: ')
-            score_tracker[1] = int(score_tracker[1]) - swing_electoral[state]
+            score_tracker[1] = int(score_tracker[1]) - state_electoral[state]
             print(f"[ESTIMATE] Trump:\t\t{score_tracker[1]}")
         elif candidate == 'Biden':
             state = input('Swing State Abbreviation: ')
-            score_tracker[1] = int(score_tracker[0]) - swing_electoral[state]
+            score_tracker[1] = int(score_tracker[0]) - state_electoral[state]
             print(f"[ESTIMATE] Biden:\t\t{score_tracker[0]}")
         else:
             break
