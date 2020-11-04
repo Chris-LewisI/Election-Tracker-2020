@@ -75,7 +75,7 @@ while True:
     if(operation == 'ADD'):
         candidate = input('Candidate: ')
         if candidate == 'Trump':
-            state = input('Swing State Abbreviation: ')
+            state = input('State Abbreviation: ')
             score_tracker[1] = int(score_tracker[1]) + state_electoral[state]
             print(f"[ESTIMATE] Trump:\t\t{score_tracker[1]}")
         elif candidate == 'Biden':
@@ -88,7 +88,7 @@ while True:
     elif(operation == 'SUB'):
         candidate = input('Candidate: ')
         if candidate == 'Trump':
-            state = input('Swing State Abbreviation: ')
+            state = input('State Abbreviation: ')
             score_tracker[1] = int(score_tracker[1]) - state_electoral[state]
             print(f"[ESTIMATE] Trump:\t\t{score_tracker[1]}")
         elif candidate == 'Biden':
