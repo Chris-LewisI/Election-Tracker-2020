@@ -74,28 +74,50 @@ while True:
     operation = input('ADD or SUB State: ')
     if(operation == 'ADD'):
         candidate = input('Candidate: ')
-        if candidate == 'Trump':
-            state = input('State Abbreviation: ')
-            score_tracker[1] = int(score_tracker[1]) + state_electoral[state]
-            print(f"[ESTIMATE] Trump:\t\t{score_tracker[1]}")
-        elif candidate == 'Biden':
-            state = input('Swing State Abbreviation: ')
-            score_tracker[1] = int(score_tracker[0]) + state_electoral[state]
-            print(f"[ESTIMATE] Biden:\t\t{score_tracker[0]}")
+        if candidate != 'Trump' or candidate != 'Biden':
+            print('Invalid Candidate')
         else:
-            break
+            if candidate == 'Trump':
+                state = input('State Abbreviation: ')
+                try:
+                    score_tracker[1] = int(score_tracker[1]) + state_electoral[state]
+                except:
+                    print('Invalid State Initials')
+                    continue
+                print(f"[ESTIMATE] Trump:\t\t{score_tracker[1]}")
+            elif candidate == 'Biden':
+                state = input('Swing State Abbreviation: ')
+                try:
+                    score_tracker[1] = int(score_tracker[1]) + state_electoral[state]
+                except:
+                    print('Invalid State Initials')
+                    continue
+                print(f"[ESTIMATE] Biden:\t\t{score_tracker[0]}")
+            else:
+                break
 
     elif(operation == 'SUB'):
         candidate = input('Candidate: ')
-        if candidate == 'Trump':
-            state = input('State Abbreviation: ')
-            score_tracker[1] = int(score_tracker[1]) - state_electoral[state]
-            print(f"[ESTIMATE] Trump:\t\t{score_tracker[1]}")
-        elif candidate == 'Biden':
-            state = input('Swing State Abbreviation: ')
-            score_tracker[1] = int(score_tracker[0]) - state_electoral[state]
-            print(f"[ESTIMATE] Biden:\t\t{score_tracker[0]}")
+        if candidate != 'Trump' or candidate != 'Biden':
+            print('Invalid Candidate')
         else:
-            break
+            if candidate == 'Trump':
+                state = input('State Abbreviation: ')
+                try:
+                    score_tracker[1] = int(score_tracker[1]) - state_electoral[state]
+                except:
+                    print('Invalid State Initials')
+                    continue
+                print(f"[ESTIMATE] Trump:\t\t{score_tracker[1]}")
+            elif candidate == 'Biden':
+                state = input('Swing State Abbreviation: ')
+                try:
+                    score_tracker[1] = int(score_tracker[1]) - state_electoral[state]
+                except:
+                    print('Invalid State Initials')
+                    continue
+                print(f"[ESTIMATE] Biden:\t\t{score_tracker[0]}")
+            else:
+                break
     else:
         break
