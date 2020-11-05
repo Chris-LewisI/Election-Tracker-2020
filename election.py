@@ -8,6 +8,8 @@ response = requests.get(url)
 soup = BeautifulSoup(response.text, 'html.parser')
 
 score_tracker = []
+popular_vote = []
+
 state_electoral = {
     "PA": 20, 
     "TX": 38, 
@@ -64,10 +66,15 @@ state_electoral = {
 
 for line in soup.findAll('div', attrs={'class': 'e-count-label'}):
     score_tracker.append(line.text)
+for line in soup.findAll('div', attrs={'class': 'e-label e-republican'}):
+    popular_vote.append(line.text)
+for line in soup.findAll('div', attrs={'class': 'e-label e-democrat'}):
+    popular_vote.append(line.text)
 
-print(f"Biden:\t\t{score_tracker[0]}")
-print(f"Trump:\t\t{score_tracker[1]}")
-print(f"Remaining:\t{score_tracker[2]}")
+print('Stats from NYTimes')
+print(f"Biden:\t\tElectoral: {score_tracker[0]}\t Popular: {popular_vote[1]}")
+print(f"Trump:\t\tElectoral: {score_tracker[1]}\t Popular: {popular_vote[0]}")
+print(f"Remaining:\tElectoral: {score_tracker[2]}")
 print('\n')
 
 while True:
